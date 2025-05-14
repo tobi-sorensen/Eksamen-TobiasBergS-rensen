@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Innlogging</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registrer bruker</h2>
+        <form id="registerForm">
+            <input type="text" id="regUsername" placeholder="Brukernavn" required>
+            <input type="password" id="regPassword" placeholder="Passord" required>
+            <button type="submit">Registrer</button>
+        </form>
+
+        <h2>Logg inn</h2>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Brukernavn" required>
+            <input type="password" id="loginPassword" placeholder="Passord" required>
+            <button type="submit">Logg inn</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

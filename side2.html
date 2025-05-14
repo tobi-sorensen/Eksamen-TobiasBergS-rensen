@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Side 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Velkommen til Side 2!</h1>
+        <p>Du er logget inn.</p>
+        <button onclick="logout()">Logg ut</button>
+    </div>
+
+    <script>
+        if (!localStorage.getItem('loggedInUser')) {
+            window.location.href = "index.html";
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
