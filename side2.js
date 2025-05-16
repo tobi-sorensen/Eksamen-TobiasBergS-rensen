@@ -23,13 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("declineButton").addEventListener("click", declineCurrentMatch);
     document.getElementById("logoutButton").addEventListener("click", () => {
         localStorage.clear();
-        sessionStorage.removeItem('swipeCount'); // nullstill swipeCount ved logout
+        sessionStorage.removeItem('swipeCount');
         window.location.href = "index.html";
         console.log('loggedInUser etter logout:', localStorage.getItem('loggedInUser'));
     });
 });
-
+// Tilleggs funksjonalitet: maks swipe
 function canSwipe() {
+    const swipeCount = parseInt(sessionStorage.getItem('swipeCount'), 10) || 0;
     return swipeCount < maxSwipes;
 }
 
@@ -54,7 +55,6 @@ async function updateProfile(e) {
     e.preventDefault();
 
     try {
-        // Hent alle brukere og finn gjeldende bruker inkl. passord
         const res = await fetch(`${API_BASE}/users`);
         const users = await res.json();
         const existingUser = users.find(u => u.username === username);
@@ -64,10 +64,9 @@ async function updateProfile(e) {
             return;
         }
 
-        // Oppdater kun de nødvendige feltene, behold passordet
         const updatedUser = {
             username,
-            password: existingUser.password, // Behold passord
+            password: existingUser.password,
             name: document.getElementById("name").value,
             age: parseInt(document.getElementById("age").value),
             location: document.getElementById("location").value
@@ -162,6 +161,7 @@ async function likeCurrentMatch() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(currentMatch)
         });
+        let swipeCount = parseInt(sessionStorage.getItem('swipeCount'), 10) || 0;
         swipeCount++;
         sessionStorage.setItem('swipeCount', swipeCount);
         fetchLikedUsers();
@@ -177,6 +177,7 @@ function declineCurrentMatch() {
         alert("Du har nådd maks antall swipes for denne økten.");
         return;
     }
+    let swipeCount = parseInt(sessionStorage.getItem('swipeCount'), 10) || 0;
     swipeCount++;
     sessionStorage.setItem('swipeCount', swipeCount);
     fetchAndShowMatch();
@@ -214,3 +215,7 @@ async function deleteLikedUser(id) {
         alert("Klarte ikke å slette bruker.");
     }
 }
+
+module.exports = {
+    canSwipe,
+  };

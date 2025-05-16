@@ -1,8 +1,7 @@
 const API_BASE = "https://crudcrud.com/api/aef45371b5da464e8b46a3b89ebe2582/users";
-const messageBox = document.getElementById('message');
 
 // Registrering
-document.getElementById('registerForm').addEventListener('submit', async function (e) {
+document.getElementById('registerForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
     const username = document.getElementById('regUsername').value.trim();
     const password = document.getElementById('regPassword').value.trim();
@@ -46,7 +45,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 });
 
 // Innlogging
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
+document.getElementById('loginForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
     const username = document.getElementById('loginUsername').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
@@ -82,7 +81,8 @@ async function fetchUsers() {
 }
 
 function showMessage(msg) {
-    messageBox.innerText = msg;
+    const box = document.getElementById('message');
+    if (box) box.innerText = msg;
 }
 
 async function patchMissingPasswords(defaultPassword = "1234") {
@@ -102,3 +102,10 @@ async function patchMissingPasswords(defaultPassword = "1234") {
         }
     }
 }
+
+// Eksporter for testing
+module.exports = {
+    fetchUsers,
+    patchMissingPasswords,
+    showMessage
+};
