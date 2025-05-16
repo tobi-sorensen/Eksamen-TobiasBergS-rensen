@@ -2,25 +2,55 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <title>Side 2</title>
+    <title>Datingapp</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Velkommen til Side 2!</h1>
-        <p>Du er logget inn.</p>
-        <button onclick="logout()">Logg ut</button>
+        <h1>Velkommen, <span id="usernameDisplay"></span></h1>
+
+        <section id="profileSection">
+            <h2>Din profil</h2>
+            <form id="profileForm">
+                <input type="text" id="name" placeholder="Navn" required>
+                <input type="number" id="age" placeholder="Alder" required>
+                <input type="text" id="location" placeholder="Bosted" required>
+                <button type="submit">Oppdater profil</button>
+            </form>
+        </section>
+
+        <section id="filterSection">
+            <h2>Filtrering</h2>
+            <form id="filterForm">
+                <select id="genderFilter">
+                    <option value="">Alle</option>
+                    <option value="male">Mann</option>
+                    <option value="female">Kvinne</option>
+                </select>
+                <input type="number" id="minAge" placeholder="Min alder">
+                <input type="number" id="maxAge" placeholder="Maks alder">
+                <button type="submit">Lagre filtre</button>
+            </form>
+        </section>
+
+        <section id="matchSection">
+            <h2>Potensiell match</h2>
+            <div id="matchDisplay">
+            </div>
+            <div id="swipeInfo" style="margin-top: 10px; font-weight: 600;"></div>
+            <button id="likeButton">Like</button>
+            <button id="declineButton">Avslå</button>
+        </section>
+
+        <section id="likedUsersSection">
+            <h2>Likede brukere</h2>
+            <ul id="likedUsersList">
+            </ul>
+        </section>
+
+        <button id="logoutButton">Logg ut</button>
     </div>
 
-    <script>
-        if (!localStorage.getItem('loggedInUser')) {
-            window.location.href = "index.html";
-        }
-
-        function logout() {
-            localStorage.removeItem('loggedInUser');
-            window.location.href = "index.html";
-        }
-    </script>
+    <script src="side2.js"></script>
 </body>
 </html>

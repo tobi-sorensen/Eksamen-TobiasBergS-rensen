@@ -9,10 +9,13 @@
     <div class="container">
         <h2>Registrer bruker</h2>
         <form id="registerForm">
-            <input type="text" id="regUsername" placeholder="Brukernavn" required>
-            <input type="password" id="regPassword" placeholder="Passord" required>
+            <input id="regUsername" type="text" required placeholder="Brukernavn" />
+            <input id="regPassword" type="password" required placeholder="Passord" />
+            <input id="regName" type="text" placeholder="Navn" />
+            <input id="regAge" type="number" placeholder="Alder" min="18" max="100" />
+            <input id="regLocation" type="text" placeholder="Sted" />
             <button type="submit">Registrer</button>
-        </form>
+          </form>
 
         <h2>Logg inn</h2>
         <form id="loginForm">
